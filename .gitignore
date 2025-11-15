@@ -1,0 +1,19 @@
+# Ignore root-level node modules
+backend/node_modules/
+frontend/node_modules/
+
+# Logs
+*.log
+
+# Build files
+frontend/build/
+frontend/dist/
+backend/build/
+backend/dist/
+
+# Environment files
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
