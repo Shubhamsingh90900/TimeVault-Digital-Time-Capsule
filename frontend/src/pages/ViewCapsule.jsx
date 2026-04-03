@@ -38,7 +38,7 @@ const ViewCapsule = () => {
   useEffect(() => {
     if (!capsule) return;
 
-    const unlockTime = new Date(capsule.unlockDate).getTime();
+    const unlockTime = new Date(capsule.unlockDate.split("/").reverse().join("-")).getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -55,14 +55,13 @@ const ViewCapsule = () => {
           setDecryptedMessage("Unable to decrypt message");
         }
       } else {
+        const days = Math.floor(diff/(1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
 
         setTimeLeft(
-          `${hours.toString().padStart(2, "0")}:${minutes
-            .toString()
-            .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+          `${days}d ${hours}h ${minutes}m ${seconds}$` 
         );
       }
     }, 1000);

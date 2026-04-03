@@ -1,7 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { handleSuccess } from "./utils";
 
 const Home = () => {
+
+  const [loggedInUser, setLoggedInUser] = useState('');
+  const navigate = useNavigate();
+  useEffect(()=>{
+    setLoggedInUser(localStorage.getItem('loggedInUser'))
+  }, []);
+
+  const handleLogout =(e)=>{
+    localStorage.removeItem('token')
+    localStorage.removeItem('loggedInUser');
+    handleSuccess('User Logout');
+    setTimeout(()=>{
+      window.location.href = "/login";
+    }, 1000)
+  }
   return (
     <div
       style={{
@@ -11,8 +27,21 @@ const Home = () => {
         justifyContent: "center",
         alignItems: "center",
         padding: "20px",
+        position: "relative"
       }}
     >
+      <button onClick={handleLogout} style={{
+        position: "absolute",
+        top: '20px',
+        right: "20px",
+        padding: "10px 20px",
+        background: "white",
+        color: "#2575fc",
+        border: "none",
+        borderRadius: "8px", 
+        cursor: "pointer",
+        fontWeight: "600"
+      }}>Logout</button>
       <div
         style={{
           background: "rgba(255, 255, 255, 0.15)",
@@ -32,9 +61,9 @@ const Home = () => {
             fontWeight: "700",
           }}
         >
-          Welcome to <span style={{ color: "#ffd700" }}>TimeVault ⏳</span>
+          Welcome  <span style={{ color: "#ffd700" }}>{loggedInUser}  ⏳</span> To Timevault
         </h1>
-
+      
         <p
           style={{
             fontSize: "18px",

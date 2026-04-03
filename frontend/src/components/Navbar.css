@@ -77,3 +77,17 @@
     font-size: 22px;
   }
 }
+
+.logout-icon{
+  color: white;
+  margin-right: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.logout-icon:hover{
+  text-decoration: underline;
+  color: #ffd700;
+}
